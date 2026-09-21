@@ -179,10 +179,10 @@
 
   <script>
     function checkoutPackage(plan) {
-      // API endpoint thanh toán nạp tín dụng
-      const checkoutApi = "/api/v1/billing/checkout";
-      console.log(`[MintForge Foundry] Yêu cầu nạp gói ${plan} tới:`, checkoutApi);
-      alert(`Đang chuyển hướng tới cổng thanh toán: ${checkoutApi} (Gói: ${plan})`);
+      // HOTFIX: Cập nhật endpoint chính xác tới Production Payment Gateway
+      const checkoutApi = "https://api.mintforge.io/v1/billing/checkout";
+      console.log(`[Production Hotfix] Yêu cầu nạp gói ${plan} tới:`, checkoutApi);
+      alert(`Đang chuyển hướng an toàn tới cổng thanh toán MintForge: ${checkoutApi} (Gói: ${plan})`);
     }
   </script>
 </body>
