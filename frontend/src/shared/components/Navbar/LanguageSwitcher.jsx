@@ -13,7 +13,7 @@ export default function LanguageSwitcher({ className = "" }) {
   const dropdownRef = useRef(null);
 
   const currentLangCode = urlLang || i18n.language || DEFAULT_LANGUAGE;
-  const currentLang = SUPPORTED_LANGUAGES.find(l => l.code === currentLangCode) || SUPPORTED_LANGUAGES[0];
+  const currentLang = SUPPORTED_LANGUAGES.find(l => l.code === currentLangCode || l.aliases?.includes(currentLangCode)) || SUPPORTED_LANGUAGES[0];
 
   // Close dropdown on click outside
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function LanguageSwitcher({ className = "" }) {
 
     // Tính toán URL mới thay thế tiền tố ngôn ngữ
     const segments = location.pathname.split('/').filter(Boolean);
-    const isFirstSegmentLang = SUPPORTED_LANGUAGES.some(l => l.code === segments[0]);
+    const isFirstSegmentLang = SUPPORTED_LANGUAGES.some(l => l.code === segments[0] || l.aliases?.includes(segments[0]));
 
     let newPathname = '';
     if (isFirstSegmentLang) {
