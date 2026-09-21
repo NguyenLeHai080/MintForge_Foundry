@@ -130,7 +130,7 @@ export default function UpstreamProvidersPage() {
               </span>
             </div>
             <p className="text-xs text-slate-400 mt-0.5">
-              Chuẩn Native OpenAI Image API ({primaryProvider?.baseUrl}) • Điểm ảnh thực • Đơn giá vốn {primaryProvider?.costPerImage}đ • Không phụ thu ảnh tham chiếu.
+              {t('admin.active_banner_desc')}
             </p>
           </div>
         </div>
@@ -169,7 +169,7 @@ export default function UpstreamProvidersPage() {
             </div>
             <div className="text-[11px] text-emerald-400/90 font-medium mt-0.5 flex items-center gap-1">
               <span>✓</span>
-              <span>Tốc độ cao Native API</span>
+              <span>{t('admin.metric_latency_sub')}</span>
             </div>
           </div>
           <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
@@ -185,7 +185,7 @@ export default function UpstreamProvidersPage() {
               {primaryProvider?.costPerImage} đ
             </div>
             <div className="text-[11px] text-slate-400 font-medium mt-0.5">
-              Mức: 150đ <span className="text-amber-400 font-bold">(Lãi gộp: 50% - 53%)</span>
+              {t('admin.metric_cost_sub')}
             </div>
           </div>
           <div className="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center">
@@ -198,10 +198,10 @@ export default function UpstreamProvidersPage() {
           <div>
             <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{t('admin.metric_infrastructure')}</div>
             <div className="text-base font-extrabold text-purple-400 mt-1">
-              {providers.filter(p => p.isActive).length} NCC Sẵn Sàng
+              {providers.filter(p => p.isActive).length} {t('admin.unit_ready_providers')}
             </div>
             <div className="text-[11px] text-slate-400 font-medium mt-0.5">
-              {providers.reduce((acc, p) => acc + (p.supportedModels?.length || 1), 0)} Model AI sinh ảnh
+              {providers.reduce((acc, p) => acc + (p.supportedModels?.length || 1), 0)} {t('admin.metric_infrastructure_sub')}
             </div>
           </div>
           <div className="w-9 h-9 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center">
@@ -319,7 +319,7 @@ export default function UpstreamProvidersPage() {
                         <button
                           onClick={() => handleCopy(provider.baseUrl, `url_${provider.id}`)}
                           className="text-slate-500 hover:text-slate-200 transition-colors p-1"
-                          title="Sao chép URL"
+                          title={t('admin.action_copy_url')}
                         >
                           {copiedId === `url_${provider.id}` ? (
                             <FiCheck className="w-3 h-3 text-emerald-400" />
@@ -339,14 +339,14 @@ export default function UpstreamProvidersPage() {
                         <button
                           onClick={() => toggleRevealKey(provider.id)}
                           className="text-slate-500 hover:text-slate-300 p-1"
-                          title={isKeyRevealed ? "Ẩn Key" : "Xem Key"}
+                          title={isKeyRevealed ? t('admin.action_hide_key') : t('admin.action_view_key')}
                         >
                           {isKeyRevealed ? <FiEyeOff className="w-3 h-3" /> : <FiEye className="w-3 h-3" />}
                         </button>
                         <button
                           onClick={() => handleCopy(provider.apiKey, `key_${provider.id}`)}
                           className="text-slate-500 hover:text-slate-300 p-1"
-                          title="Sao chép Key"
+                          title={t('admin.action_copy_key')}
                         >
                           {copiedId === `key_${provider.id}` ? (
                             <FiCheck className="w-3 h-3 text-emerald-400" />
@@ -398,7 +398,7 @@ export default function UpstreamProvidersPage() {
                           className={`text-slate-500 hover:text-indigo-400 p-1 rounded hover:bg-slate-800 transition-colors ${
                             pingingId === provider.id ? 'animate-spin text-orange-400' : ''
                           }`}
-                          title="Kiểm tra Ping lại"
+                          title={t('admin.action_ping')}
                         >
                           <FiRefreshCw className="w-3 h-3" />
                         </button>
@@ -414,10 +414,10 @@ export default function UpstreamProvidersPage() {
                             ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/20'
                             : 'bg-slate-800 text-slate-400 border-slate-700 hover:bg-slate-700'
                         }`}
-                        title="Bấm để bật/tắt kết nối"
+                        title={t('admin.form_activate')}
                       >
                         <span className={`w-1.5 h-1.5 rounded-full ${provider.isActive ? 'bg-emerald-400' : 'bg-slate-500'}`}></span>
-                        <span>{provider.isActive ? 'Online' : 'Đã tắt'}</span>
+                        <span>{provider.isActive ? t('admin.status_online') : t('admin.status_offline')}</span>
                       </button>
                     </td>
 
@@ -428,7 +428,7 @@ export default function UpstreamProvidersPage() {
                           <button
                             onClick={() => setPrimary(provider.id)}
                             className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:bg-orange-500/15 hover:border-orange-500/30 text-slate-400 hover:text-orange-400 transition-colors"
-                            title="Đặt làm Cổng Chính"
+                            title={t('admin.action_set_primary')}
                           >
                             <FiStar className="w-3.5 h-3.5" />
                           </button>
@@ -439,18 +439,18 @@ export default function UpstreamProvidersPage() {
                             setIsModalOpen(true);
                           }}
                           className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-400 hover:text-white transition-colors"
-                          title="Chỉnh sửa"
+                          title={t('admin.action_edit')}
                         >
                           <FiEdit2 className="w-3.5 h-3.5" />
                         </button>
                         <button
                           onClick={() => {
-                            if (window.confirm(`Xóa nhà cung cấp "${provider.name}"?`)) {
+                            if (window.confirm(`${t('admin.confirm_delete_provider')} "${provider.name}"?`)) {
                               deleteProvider(provider.id);
                             }
                           }}
                           className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:bg-rose-500/15 hover:border-rose-500/30 text-slate-400 hover:text-rose-400 transition-colors"
-                          title="Xóa"
+                          title={t('admin.action_delete')}
                         >
                           <FiTrash2 className="w-3.5 h-3.5" />
                         </button>
@@ -466,14 +466,14 @@ export default function UpstreamProvidersPage() {
         {/* Footer Pagination */}
         <div className="p-3.5 bg-slate-950/80 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400 gap-2">
           <div>
-            Hiển thị <strong>1 - {filteredProviders.length}</strong> trên <strong>{providers.length}</strong> bản ghi
+            {t('admin.pagination_showing')} <strong>1 - {filteredProviders.length}</strong> {t('admin.pagination_of')} <strong>{providers.length}</strong> {t('admin.pagination_records')}
           </div>
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1">
-              <span>Số dòng:</span>
+              <span>{t('admin.pagination_rows_per_page')}</span>
               <select className="bg-slate-900 border border-slate-800 rounded px-2 py-0.5 text-slate-200">
-                <option>10/trang</option>
-                <option>20/trang</option>
+                <option>10{t('admin.pagination_per_page')}</option>
+                <option>20{t('admin.pagination_per_page')}</option>
               </select>
             </div>
             <div className="flex items-center gap-1">
@@ -548,7 +548,7 @@ export default function UpstreamProvidersPage() {
                 onChange={(e) => updateFailoverConfig({ timeoutSeconds: Number(e.target.value) })}
                 className="w-20 bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-white text-center font-bold focus:outline-none focus:border-orange-500"
               />
-              <span className="text-xs text-slate-400 font-medium">giây</span>
+              <span className="text-xs text-slate-400 font-medium">{t('admin.unit_seconds')}</span>
             </div>
           </div>
 
