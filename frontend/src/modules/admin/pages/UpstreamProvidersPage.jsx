@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { 
   FiServer, FiRefreshCw, FiPlus, FiZap, FiCopy, FiEye, 
   FiEyeOff, FiCheck, FiLayers, FiShield, FiTrendingUp, 
@@ -9,6 +10,7 @@ import { useProvidersStore } from '../store/providersStore';
 import ProviderModal from '../components/ProviderModal';
 
 export default function UpstreamProvidersPage() {
+  const { t } = useTranslation();
   const { 
     providers, 
     failoverConfig, 
@@ -76,17 +78,17 @@ export default function UpstreamProvidersPage() {
         <div>
           <div className="flex flex-wrap items-center gap-2 mb-1.5">
             <h1 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
-              Quản Lý Nhà Cung Cấp (AI Upstream Providers)
+              {t('admin.providers_title')}
             </h1>
             <span className="px-2.5 py-0.5 rounded-full bg-orange-500/15 text-orange-400 border border-orange-500/30 text-[10px] font-bold">
-              Cấu hình dịch vụ
+              {t('admin.badge_service_config')}
             </span>
             <span className="px-2.5 py-0.5 rounded-full bg-purple-500/15 text-purple-400 border border-purple-500/30 text-[10px] font-bold">
-              Super Admin (Toàn quyền)
+              {t('admin.badge_super_admin')}
             </span>
           </div>
           <p className="text-xs text-slate-400 max-w-3xl">
-            Quản trị các cổng kết nối AI Upstream (Xompet Gateway, OpenAI), kiểm tra kết nối thời gian thực, chuyển đổi cổng chính và định tuyến mô hình.
+            {t('admin.providers_subtitle')}
           </p>
         </div>
 
@@ -96,7 +98,7 @@ export default function UpstreamProvidersPage() {
             className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 font-semibold text-xs transition-colors shadow-sm"
           >
             <FiRefreshCw className="w-3.5 h-3.5 text-slate-400" />
-            <span>Làm mới</span>
+            <span>{t('admin.btn_refresh')}</span>
           </button>
 
           <button 
@@ -107,7 +109,7 @@ export default function UpstreamProvidersPage() {
             className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold text-xs shadow-lg shadow-orange-500/25 transition-all"
           >
             <FiPlus className="w-4 h-4" />
-            <span>Thêm Nhà Cung Cấp</span>
+            <span>{t('admin.btn_add_provider')}</span>
           </button>
         </div>
       </div>
@@ -121,10 +123,10 @@ export default function UpstreamProvidersPage() {
           <div>
             <div className="flex items-center gap-2">
               <span className="font-bold text-white text-sm">
-                Cổng Chính Đang Hoạt Động: {primaryProvider?.name}
+                {t('admin.active_banner_title')}: {primaryProvider?.name}
               </span>
               <span className="px-2 py-0.5 rounded-md bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold">
-                Đang xử lý
+                {t('admin.active_banner_status')}
               </span>
             </div>
             <p className="text-xs text-slate-400 mt-0.5">
@@ -138,7 +140,7 @@ export default function UpstreamProvidersPage() {
           className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 text-xs font-semibold border border-slate-700/80 shrink-0 transition-colors"
         >
           <FiZap className="w-3.5 h-3.5 text-amber-400" />
-          <span>Kiểm tra Ping toàn bộ</span>
+          <span>{t('admin.btn_ping_all')}</span>
         </button>
       </div>
 
@@ -147,7 +149,7 @@ export default function UpstreamProvidersPage() {
         {/* Card 1: CỔNG NCC CHÍNH */}
         <div className="p-4 rounded-2xl bg-[#0c101d] border-l-4 border-l-orange-500 border border-slate-800/80 shadow-md flex items-center justify-between">
           <div>
-            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Cổng NCC Chính</div>
+            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{t('admin.metric_primary')}</div>
             <div className="text-base font-extrabold text-white mt-1">{primaryProvider?.name}</div>
             <div className="text-[11px] text-orange-400/90 font-medium mt-0.5">
               model: <span className="font-mono">{primaryProvider?.defaultModel}</span>
@@ -161,7 +163,7 @@ export default function UpstreamProvidersPage() {
         {/* Card 2: ĐỘ TRỄ PHẢN HỒI */}
         <div className="p-4 rounded-2xl bg-[#0c101d] border-l-4 border-l-emerald-500 border border-slate-800/80 shadow-md flex items-center justify-between">
           <div>
-            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Độ Trễ Phản Hồi (Ping)</div>
+            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{t('admin.metric_latency')}</div>
             <div className="text-base font-extrabold text-emerald-400 mt-1">
               {primaryProvider?.latencyMs?.toLocaleString()} ms
             </div>
@@ -178,7 +180,7 @@ export default function UpstreamProvidersPage() {
         {/* Card 3: GIÁ VỐN / ẢNH */}
         <div className="p-4 rounded-2xl bg-[#0c101d] border-l-4 border-l-amber-500 border border-slate-800/80 shadow-md flex items-center justify-between">
           <div>
-            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Giá Vốn / Ảnh Thành Công</div>
+            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{t('admin.metric_cost')}</div>
             <div className="text-base font-extrabold text-white mt-1">
               {primaryProvider?.costPerImage} đ
             </div>
@@ -194,7 +196,7 @@ export default function UpstreamProvidersPage() {
         {/* Card 4: HẠ TẦNG CỔNG KẾT NỐI */}
         <div className="p-4 rounded-2xl bg-[#0c101d] border-l-4 border-l-purple-500 border border-slate-800/80 shadow-md flex items-center justify-between">
           <div>
-            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Hạ Tầng Cổng Kết Nối</div>
+            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{t('admin.metric_infrastructure')}</div>
             <div className="text-base font-extrabold text-purple-400 mt-1">
               {providers.filter(p => p.isActive).length} NCC Sẵn Sàng
             </div>
@@ -216,7 +218,7 @@ export default function UpstreamProvidersPage() {
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Tìm kiếm theo tên nhà cung cấp, cổng URL, model..."
+            placeholder={t('admin.search_placeholder')}
             className="w-full bg-slate-900/80 border border-slate-800 rounded-xl pl-10 pr-4 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-orange-500/60 transition-colors"
           />
         </div>
@@ -231,7 +233,7 @@ export default function UpstreamProvidersPage() {
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              Tất cả ({providers.length})
+              {t('admin.tab_all')} ({providers.length})
             </button>
             <button
               onClick={() => setFilterTab('ACTIVE')}
@@ -241,7 +243,7 @@ export default function UpstreamProvidersPage() {
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              Đang hoạt động ({providers.filter(p => p.isActive).length})
+              {t('admin.tab_active')} ({providers.filter(p => p.isActive).length})
             </button>
           </div>
 
@@ -262,14 +264,14 @@ export default function UpstreamProvidersPage() {
           <table className="w-full text-left text-xs text-slate-300">
             <thead className="bg-slate-950/90 text-[10px] uppercase font-bold text-slate-500 tracking-wider border-b border-slate-800/80">
               <tr>
-                <th className="py-3.5 px-4">CỔNG & NHÀ CUNG CẤP</th>
-                <th className="py-3.5 px-4">CỔNG BASE URL</th>
-                <th className="py-3.5 px-4">API KEY (BEARER)</th>
-                <th className="py-3.5 px-4">MODEL MẶC ĐỊNH & HỖ TRỢ</th>
-                <th className="py-3.5 px-4 text-center">GIÁ VỐN / ẢNH</th>
-                <th className="py-3.5 px-4 text-center">ĐỘ TRỄ (PING)</th>
-                <th className="py-3.5 px-4 text-center">TRẠNG THÁI</th>
-                <th className="py-3.5 px-4 text-right">THAO TÁC</th>
+                <th className="py-3.5 px-4">{t('admin.col_provider')}</th>
+                <th className="py-3.5 px-4">{t('admin.col_url')}</th>
+                <th className="py-3.5 px-4">{t('admin.col_apikey')}</th>
+                <th className="py-3.5 px-4">{t('admin.col_models')}</th>
+                <th className="py-3.5 px-4 text-center">{t('admin.col_cost')}</th>
+                <th className="py-3.5 px-4 text-center">{t('admin.col_ping')}</th>
+                <th className="py-3.5 px-4 text-center">{t('admin.col_status')}</th>
+                <th className="py-3.5 px-4 text-right">{t('admin.col_actions')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/50">
@@ -498,16 +500,16 @@ export default function UpstreamProvidersPage() {
             </div>
             <div>
               <h3 className="text-sm font-bold text-white flex items-center gap-2">
-                Cơ Chế Chuyển Mạch Tự Động & Dự Phòng (Failover Engine)
+                {t('admin.failover_title')}
               </h3>
               <p className="text-[11px] text-slate-400 mt-0.5">
-                Bảo vệ độ sẵn sàng 99.9% cho các yêu cầu sinh ảnh qua API & Studio.
+                {t('admin.failover_desc')}
               </p>
             </div>
           </div>
 
           <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold">
-            Đang bật tự động dự phòng
+            {t('admin.failover_active_badge')}
           </span>
         </div>
 
@@ -515,9 +517,9 @@ export default function UpstreamProvidersPage() {
           {/* Col 1 */}
           <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 flex flex-col justify-between">
             <div>
-              <div className="text-xs font-bold text-slate-200 mb-1">Tự động chuyển mạch dự phòng</div>
+              <div className="text-xs font-bold text-slate-200 mb-1">{t('admin.failover_auto_switch')}</div>
               <p className="text-[11px] text-slate-400 leading-relaxed mb-3">
-                Tự động chuyển sang NCC phụ (Standby) khi NCC chính trả lỗi 5xx hoặc timeout.
+                {t('admin.failover_auto_switch_desc')}
               </p>
             </div>
             <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-slate-200">
@@ -527,16 +529,16 @@ export default function UpstreamProvidersPage() {
                 onChange={(e) => updateFailoverConfig({ isEnabled: e.target.checked })}
                 className="rounded border-slate-700 bg-slate-950 text-orange-500 focus:ring-orange-500 w-4 h-4 cursor-pointer"
               />
-              <span>Kích hoạt Failover</span>
+              <span>{t('admin.failover_auto_switch')}</span>
             </label>
           </div>
 
           {/* Col 2 */}
           <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 flex flex-col justify-between">
             <div>
-              <div className="text-xs font-bold text-slate-200 mb-1">Giới hạn Timeout phản hồi</div>
+              <div className="text-xs font-bold text-slate-200 mb-1">{t('admin.failover_timeout_limit')}</div>
               <p className="text-[11px] text-slate-400 leading-relaxed mb-3">
-                Thời gian tối đa chờ phản hồi ảnh từ NCC trước khi kích hoạt chuyển mạch.
+                {t('admin.failover_timeout_desc')}
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -554,12 +556,12 @@ export default function UpstreamProvidersPage() {
           <div className="p-4 rounded-xl bg-gradient-to-br from-amber-500/10 via-slate-900/90 to-slate-900 border border-amber-500/30 text-xs text-slate-300 flex flex-col justify-between">
             <div className="font-bold text-amber-400 mb-1.5 flex items-center gap-1.5">
               <span>🛡️</span>
-              <span>Chính sách quyết toán NCC</span>
+              <span>{t('admin.policy_title')}</span>
             </div>
             <ul className="space-y-1 text-[11px] text-slate-300 leading-tight">
-              <li>• Chỉ tính tiền khi ảnh thành công (Fail = 0đ).</li>
-              <li>• Ảnh tham chiếu (Reference) miễn phí 100%.</li>
-              <li>• Tự động rollback 100% ví khách khi lỗi mạng.</li>
+              <li>• {t('admin.policy_item1')}</li>
+              <li>• {t('admin.policy_item2')}</li>
+              <li>• {t('admin.policy_item3')}</li>
             </ul>
           </div>
         </div>

@@ -1,0 +1,19 @@
+{
+  "hero_badge": "🔥 業界最高峰のAIクレジット基盤",
+  "hero_title": "AI画像生成クレジット＆課金エンジン",
+  "hero_desc": "MintForge専用の自動課金・クレジット管理システム。Midjourney v6、SDXL、FLUX.1を専用GPUで高速処理。",
+  "btn_explore": "料金プランを見る",
+  "btn_login": "ログイン",
+  "btn_register": "新規登録",
+  "btn_admin": "管理者ポータル",
+  "btn_logout": "ログアウト",
+  "pricing_title": "人気の料金プラン",
+  "pricing_subtitle": "あなたのクリエイティブな制作フローに最適なクレジットパックをお選びください",
+  "popular": "一番人気",
+  "btn_choose_plan": "このプランを選択",
+  "faq_title": "よくあるご質問",
+  "faq_q1": "クレジットは何に使われますか？",
+  "faq_a1": "クレジットはAI画像生成のGPU計算コストとして使用されます（SDXL = 2クレジット、Midjourney = 5クレジット、FLUX = 4クレジット）。",
+  "faq_q2": "クレジットに有効期限はありますか？",
+  "faq_a2": "都度購入パックに有効期限はありません。月額サブスクリプションでは未使用分の最大50%を翌月に繰り越せます。"
+}
