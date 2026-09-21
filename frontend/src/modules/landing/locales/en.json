@@ -1,0 +1,19 @@
+{
+  "hero_badge": "🔥 PREMIER AI CREDIT FOUNDRY",
+  "hero_title": "AI Image Credits & Billing Engine",
+  "hero_desc": "Automated billing and credits management engine for MintForge. Experience Midjourney v6, SDXL, and FLUX with dedicated GPU speed.",
+  "btn_explore": "Explore Pricing",
+  "btn_login": "Sign In",
+  "btn_register": "Sign Up",
+  "btn_admin": "Admin Portal",
+  "btn_logout": "Sign Out",
+  "pricing_title": "Featured Pricing Tiers",
+  "pricing_subtitle": "Select the ideal credit pack for your creative workflow",
+  "popular": "Most Popular",
+  "btn_choose_plan": "Subscribe Plan",
+  "faq_title": "Frequently Asked Questions",
+  "faq_q1": "What are Credits used for?",
+  "faq_a1": "Credits are compute tokens used for AI image generations (SDXL = 2 credits, Midjourney = 5 credits, FLUX = 4 credits).",
+  "faq_q2": "Do Credits expire?",
+  "faq_a2": "Top-up packs never expire. Monthly subscriptions allow rolling over up to 50% unused credits."
+}
