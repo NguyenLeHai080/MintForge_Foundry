@@ -52,7 +52,7 @@ export default function ProviderModal({ isOpen, onClose, onSubmit, initialData =
             name="name"
             value={formData.name}
             onChange={handleChange}
-            placeholder="VD: OpenAI Native"
+            placeholder={t('admin.placeholder_provider_name')}
             required
           />
           <Input
@@ -60,7 +60,7 @@ export default function ProviderModal({ isOpen, onClose, onSubmit, initialData =
             name="slug"
             value={formData.slug}
             onChange={handleChange}
-            placeholder="VD: nha_cung_cap_02"
+            placeholder={t('admin.placeholder_provider_slug')}
             required
           />
         </div>
@@ -71,7 +71,7 @@ export default function ProviderModal({ isOpen, onClose, onSubmit, initialData =
             name="baseUrl"
             value={formData.baseUrl}
             onChange={handleChange}
-            placeholder="https://api.1eeh.dev/v1"
+            placeholder={t('admin.placeholder_base_url')}
             required
           />
           <Input
@@ -79,7 +79,7 @@ export default function ProviderModal({ isOpen, onClose, onSubmit, initialData =
             name="apiKey"
             value={formData.apiKey}
             onChange={handleChange}
-            placeholder="sk-50Z829..."
+            placeholder={t('admin.placeholder_api_key')}
             required
           />
         </div>
@@ -90,7 +90,7 @@ export default function ProviderModal({ isOpen, onClose, onSubmit, initialData =
             name="defaultModel"
             value={formData.defaultModel}
             onChange={handleChange}
-            placeholder="gpt-image-2"
+            placeholder={t('admin.placeholder_default_model')}
             required
           />
           <Input
@@ -99,7 +99,7 @@ export default function ProviderModal({ isOpen, onClose, onSubmit, initialData =
             name="costPerImage"
             value={formData.costPerImage}
             onChange={handleChange}
-            placeholder="120"
+            placeholder={t('admin.placeholder_cost')}
             required
           />
         </div>
@@ -109,7 +109,7 @@ export default function ProviderModal({ isOpen, onClose, onSubmit, initialData =
           name="supportedModels"
           value={formData.supportedModels}
           onChange={handleChange}
-          placeholder="gpt-image-2, gpt-image-2.5-flare, nanobanana-2"
+          placeholder={t('admin.placeholder_supported_models')}
           required
         />
 
