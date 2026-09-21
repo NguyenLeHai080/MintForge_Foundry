@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FiShield, FiLogIn, FiLogOut } from 'react-icons/fi';
 import { useAuthStore } from '../../../modules/auth/store/authStore';
@@ -10,12 +10,52 @@ import UserProfileDropdown from '../../../modules/auth/components/UserProfileDro
 export default function Navbar() {
   const { t } = useTranslation();
   const { lang } = useParams();
+  const location = useLocation();
   const currentLang = lang || 'vi';
   const { user, isAuthenticated } = useAuthStore();
   const { openModal } = useAuthModalStore();
 
+  const [activeTab, setActiveTab] = useState('home');
+
+  useEffect(() => {
+    // 1. If on Admin routes
+    if (location.pathname.includes('/admin')) {
+      setActiveTab('admin');
+      return;
+    }
+
+    // 2. If Hash is in URL
+    if (location.hash === '#pricing') {
+      setActiveTab('pricing');
+      return;
+    }
+    if (location.hash === '#faq') {
+      setActiveTab('faq');
+      return;
+    }
+
+    // 3. Scroll spy on public landing page
+    const handleScroll = () => {
+      const pricingEl = document.getElementById('pricing');
+      const faqEl = document.getElementById('faq');
+      const scrollPos = window.scrollY + 100;
+
+      if (faqEl && scrollPos >= faqEl.offsetTop) {
+        setActiveTab('faq');
+      } else if (pricingEl && scrollPos >= pricingEl.offsetTop) {
+        setActiveTab('pricing');
+      } else {
+        setActiveTab('home');
+      }
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [location.pathname, location.hash]);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+    <nav className="fixed top-0 left-0 right-0 z-40 bg-slate-950/85 backdrop-blur-md border-b border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link to={`/${currentLang}`} className="flex items-center gap-2.5 group">
@@ -30,21 +70,87 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Navigation Links */}
-        <div className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
-          <Link to={`/${currentLang}`} className="hover:text-indigo-400 transition-colors">
-            {t('landing.nav_home')}
+        {/* Navigation Links with Active Border Bottom flush against header */}
+        <div className="hidden md:flex items-center gap-1 h-16 text-sm font-medium">
+          {/* 1. Home */}
+          <Link
+            to={`/${currentLang}`}
+            onClick={() => {
+              setActiveTab('home');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className={`relative h-16 flex items-center px-4 transition-all duration-200 group cursor-pointer ${
+              activeTab === 'home'
+                ? 'text-white font-semibold'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <span>{t('landing.nav_home')}</span>
+            {/* Active border bottom sát header */}
+            {activeTab === 'home' ? (
+              <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-orange-500 via-pink-500 to-indigo-500 rounded-t shadow-[0_0_12px_rgba(249,115,22,0.8)]" />
+            ) : (
+              <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-slate-700/60 opacity-0 group-hover:opacity-100 transition-opacity rounded-t" />
+            )}
           </Link>
-          <a href="#pricing" className="hover:text-indigo-400 transition-colors">
-            {t('landing.nav_pricing')}
+
+          {/* 2. Pricing */}
+          <a
+            href="#pricing"
+            onClick={() => setActiveTab('pricing')}
+            className={`relative h-16 flex items-center px-4 transition-all duration-200 group cursor-pointer ${
+              activeTab === 'pricing'
+                ? 'text-white font-semibold'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <span>{t('landing.nav_pricing')}</span>
+            {/* Active border bottom sát header */}
+            {activeTab === 'pricing' ? (
+              <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-orange-500 via-pink-500 to-indigo-500 rounded-t shadow-[0_0_12px_rgba(249,115,22,0.8)]" />
+            ) : (
+              <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-slate-700/60 opacity-0 group-hover:opacity-100 transition-opacity rounded-t" />
+            )}
           </a>
-          <a href="#faq" className="hover:text-indigo-400 transition-colors">
-            {t('landing.nav_faq')}
+
+          {/* 3. FAQ */}
+          <a
+            href="#faq"
+            onClick={() => setActiveTab('faq')}
+            className={`relative h-16 flex items-center px-4 transition-all duration-200 group cursor-pointer ${
+              activeTab === 'faq'
+                ? 'text-white font-semibold'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <span>{t('landing.nav_faq')}</span>
+            {/* Active border bottom sát header */}
+            {activeTab === 'faq' ? (
+              <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-orange-500 via-pink-500 to-indigo-500 rounded-t shadow-[0_0_12px_rgba(249,115,22,0.8)]" />
+            ) : (
+              <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-slate-700/60 opacity-0 group-hover:opacity-100 transition-opacity rounded-t" />
+            )}
           </a>
+
+          {/* 4. Super Admin (if admin) */}
           {isAuthenticated && user?.role === 'ADMIN' && (
-            <Link to={`/${currentLang}/admin/providers`} className="flex items-center gap-1.5 text-orange-400 hover:text-orange-300 transition-colors font-semibold">
+            <Link
+              to={`/${currentLang}/admin/providers`}
+              onClick={() => setActiveTab('admin')}
+              className={`relative h-16 flex items-center gap-1.5 px-4 transition-all duration-200 group cursor-pointer ${
+                activeTab === 'admin'
+                  ? 'text-orange-400 font-semibold'
+                  : 'text-slate-400 hover:text-orange-300'
+              }`}
+            >
               <FiShield className="w-4 h-4" />
-              {t('landing.btn_admin')}
+              <span>{t('landing.btn_admin')}</span>
+              {/* Active border bottom sát header */}
+              {activeTab === 'admin' ? (
+                <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-amber-500 to-orange-500 rounded-t shadow-[0_0_12px_rgba(245,158,11,0.8)]" />
+              ) : (
+                <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-orange-500/40 opacity-0 group-hover:opacity-100 transition-opacity rounded-t" />
+              )}
             </Link>
           )}
         </div>

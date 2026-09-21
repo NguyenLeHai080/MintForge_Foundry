@@ -179,6 +179,38 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section id="faq" className="max-w-4xl mx-auto px-4 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-extrabold text-white mb-3">
+            {t('landing.faq_title')}
+          </h2>
+          <div className="h-1 w-12 bg-gradient-to-r from-orange-500 to-pink-500 mx-auto rounded-full" />
+        </div>
+
+        <div className="space-y-4">
+          <div className="glass-panel p-6 rounded-2xl border border-slate-800 hover:border-slate-700 transition-colors">
+            <h3 className="text-base font-bold text-white mb-2 flex items-center gap-2">
+              <span className="text-orange-400">⚡</span>
+              {t('landing.faq_q1')}
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed pl-6">
+              {t('landing.faq_a1')}
+            </p>
+          </div>
+
+          <div className="glass-panel p-6 rounded-2xl border border-slate-800 hover:border-slate-700 transition-colors">
+            <h3 className="text-base font-bold text-white mb-2 flex items-center gap-2">
+              <span className="text-pink-400">⚡</span>
+              {t('landing.faq_q2')}
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed pl-6">
+              {t('landing.faq_a2')}
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Checkout Modal */}
       <BaseModal
         isOpen={!!selectedPlan}
