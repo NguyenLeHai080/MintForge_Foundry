@@ -24,7 +24,8 @@ export default {
         }
       },
       fontFamily: {
-        outfit: ['Outfit', 'sans-serif'],
+        outfit: ['var(--font-current)', 'Outfit', 'sans-serif'],
+        sans: ['var(--font-current)', 'sans-serif'],
       }
     },
   },
