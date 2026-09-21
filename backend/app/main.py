@@ -8,6 +8,8 @@ from app.db.session import engine, Base
 from app.modules.auth.router import router as auth_router
 from app.modules.billing.router import router as billing_router
 from app.modules.admin.router import router as admin_router
+from app.modules.providers.router import router as providers_router
+from app.modules.providers.models import Provider, FailoverSetting
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -38,6 +40,7 @@ app.add_middleware(
 app.include_router(auth_router, prefix=settings.API_V1_STR)
 app.include_router(billing_router, prefix=settings.API_V1_STR)
 app.include_router(admin_router, prefix=settings.API_V1_STR)
+app.include_router(providers_router, prefix=settings.API_V1_STR)
 
 @app.get("/")
 def root():
