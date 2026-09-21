@@ -6,6 +6,7 @@ import {
 } from 'react-icons/fi';
 
 import LanguageSwitcher from '../../../shared/components/Navbar/LanguageSwitcher';
+import UserProfileDropdown from '../../auth/components/UserProfileDropdown';
 
 export default function AdminHeader() {
   const { t } = useTranslation();
@@ -64,17 +65,9 @@ export default function AdminHeader() {
           </span>
         </div>
 
-        {/* User Profile */}
-        <div className="flex items-center gap-2.5 pl-2 border-l border-slate-800/80">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-orange-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xs shadow-md">
-            H
-          </div>
-          <div className="flex flex-col text-left">
-            <span className="font-bold text-slate-200 text-xs leading-none">Nguyen Le Hai</span>
-            <span className="text-[10px] text-orange-400 font-semibold uppercase tracking-wider mt-0.5">
-              SUPER_ADMIN
-            </span>
-          </div>
+        {/* User Profile Dropdown */}
+        <div className="pl-2 border-l border-slate-800/80">
+          <UserProfileDropdown variant="admin" />
         </div>
       </div>
     </header>

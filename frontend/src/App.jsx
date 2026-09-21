@@ -5,6 +5,8 @@ import LandingPage from './modules/landing/pages/LandingPage';
 import AdminLayout from './modules/admin/layouts/AdminLayout';
 import UpstreamProvidersPage from './modules/admin/pages/UpstreamProvidersPage';
 import AdminDashboardPage from './modules/admin/pages/AdminDashboardPage';
+import LoginPage from './modules/auth/pages/LoginPage';
+import RegisterPage from './modules/auth/pages/RegisterPage';
 import { useAuthStore } from './modules/auth/store/authStore';
 import LanguageRouteWrapper from './shared/components/Navbar/LanguageRouteWrapper';
 import { DEFAULT_LANGUAGE } from './shared/i18n';
@@ -69,6 +71,10 @@ export default function App() {
             }
           />
 
+          {/* Authentication Pages */}
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
+
           {/* Super Admin Routes */}
           <Route
             path="admin"
@@ -116,7 +122,9 @@ export default function App() {
           />
         </Route>
 
-        {/* 3. Fallback for un-prefixed admin URLs like /admin/providers */}
+        {/* 3. Fallbacks for un-prefixed URLs */}
+        <Route path="/login" element={<Navigate to={`/${defaultLang}/login`} replace />} />
+        <Route path="/register" element={<Navigate to={`/${defaultLang}/register`} replace />} />
         <Route
           path="/admin/*"
           element={<Navigate to={`/${defaultLang}/admin/providers`} replace />}
