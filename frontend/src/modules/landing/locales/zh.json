@@ -1,0 +1,19 @@
+{
+  "hero_badge": "🔥 业界领先的AI算力与积分平台",
+  "hero_title": "AI 图像积分与自动化计费引擎",
+  "hero_desc": "MintForge 专属自动化计费与积分管理系统。专享高速 GPU 算力，畅享 Midjourney v6、SDXL 及 FLUX.1。",
+  "btn_explore": "探索价格方案",
+  "btn_login": "登录",
+  "btn_register": "注册",
+  "btn_admin": "超级管理后台",
+  "btn_logout": "退出登录",
+  "pricing_title": "热门订阅方案",
+  "pricing_subtitle": "为您的创意生产力选择最理想的积分套餐",
+  "popular": "最受欢迎",
+  "btn_choose_plan": "选择此方案",
+  "faq_title": "常见问题解答",
+  "faq_q1": "积分（Credits）有什么用途？",
+  "faq_a1": "积分用于支付 AI 图像生成的 GPU 算力消耗（SDXL = 2 积分，Midjourney = 5 积分，FLUX = 4 积分）。",
+  "faq_q2": "积分会过期吗？",
+  "faq_a2": "充值包积分永久有效。按月订阅套餐在成功续费后可将高达 50% 未使用的积分顺延至下个周期。"
+}

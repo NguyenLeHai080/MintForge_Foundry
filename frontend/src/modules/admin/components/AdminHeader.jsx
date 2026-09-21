@@ -4,9 +4,9 @@ import {
   FiBell, FiActivity, FiUser 
 } from 'react-icons/fi';
 
-export default function AdminHeader() {
-  const [lang, setLang] = useState('vi');
+import LanguageSwitcher from '../../../shared/components/Navbar/LanguageSwitcher';
 
+export default function AdminHeader() {
   return (
     <header className="h-16 bg-[#0c101d] border-b border-slate-800/80 px-6 flex items-center justify-between sticky top-0 z-30">
       {/* Left Search */}
@@ -23,15 +23,8 @@ export default function AdminHeader() {
 
       {/* Right Controls */}
       <div className="flex items-center gap-4 text-xs">
-        {/* Language selector */}
-        <button 
-          onClick={() => setLang(lang === 'vi' ? 'en' : 'vi')}
-          className="flex items-center gap-1.5 text-slate-300 hover:text-white px-2.5 py-1.5 rounded-lg hover:bg-slate-800/60 transition-colors"
-        >
-          <FiGlobe className="w-4 h-4 text-slate-400" />
-          <span>{lang === 'vi' ? 'Tiếng Việt' : 'English'}</span>
-          <FiChevronDown className="w-3 h-3 text-slate-500" />
-        </button>
+        {/* Language selector 6 languages */}
+        <LanguageSwitcher />
 
         {/* Create New Dropdown */}
         <button className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold shadow-md shadow-orange-500/20 transition-all">

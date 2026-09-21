@@ -1,0 +1,19 @@
+{
+  "hero_badge": "🔥 최고의 AI 크레딧 파운드리",
+  "hero_title": "AI 이미지 크레딧 & 결제 관리 엔진",
+  "hero_desc": "MintForge 전용 자동 결제 및 크레딧 관리 엔진. 전용 GPU 속도로 Midjourney v6, SDXL 및 FLUX를 무제한 경험하세요.",
+  "btn_explore": "요금제 둘러보기",
+  "btn_login": "로그인",
+  "btn_register": "회원가입",
+  "btn_admin": "관리자 포털",
+  "btn_logout": "로그아웃",
+  "pricing_title": "인기 요금제",
+  "pricing_subtitle": "창작 워크플로우에 가장 적합한 크레딧 팩을 선택하세요",
+  "popular": "가장 인기있는",
+  "btn_choose_plan": "이 요금제 선택",
+  "faq_title": "자주 묻는 질문",
+  "faq_q1": "크레딧은 어디에 사용되나요?",
+  "faq_a1": "크레딧은 AI 이미지 생성 시 GPU 연산 비용으로 사용됩니다 (SDXL = 2 크레딧, Midjourney = 5 크레딧, FLUX = 4 크레딧).",
+  "faq_q2": "크레딧에 만료 기간이 있나요?",
+  "faq_a2": "일반 충전 팩은 영구적으로 유효합니다. 월간 구독의 경우 미사용분의 최대 50%가 다음 달로 이월됩니다."
+}
