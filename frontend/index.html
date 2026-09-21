@@ -179,8 +179,8 @@
 
   <script>
     function checkoutPackage(plan) {
-      // API endpoint thanh toán nạp tín dụng
-      const checkoutApi = "/api/v1/billing/checkout";
+      // BUG: Nhầm lẫn endpoint localhost nội bộ chưa sửa gây lỗi sập thanh toán trên Production!
+      const checkoutApi = "http://localhost:8888/debug/broken-billing";
       console.log(`[MintForge Foundry] Yêu cầu nạp gói ${plan} tới:`, checkoutApi);
       alert(`Đang chuyển hướng tới cổng thanh toán: ${checkoutApi} (Gói: ${plan})`);
     }
