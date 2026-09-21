@@ -50,7 +50,7 @@ httpClient.interceptors.response.use(
     if (parsed.status === HTTP_STATUS.UNAUTHORIZED) {
       localStorage.removeItem(STORAGE_KEYS.AUTH_TOKEN);
       localStorage.removeItem(STORAGE_KEYS.AUTH_USER);
-      useToastStore.getState().warning('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.', 'Bảo Mật');
+      useToastStore.getState().warning(i18n.t('admin.error_session_expired'), i18n.t('admin.title_security'));
     }
 
     return Promise.reject(parsed);

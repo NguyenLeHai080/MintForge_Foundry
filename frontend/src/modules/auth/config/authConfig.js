@@ -10,7 +10,7 @@ export const AUTH_ROLES = {
 
 export const DEFAULT_ADMIN_USER = {
   id: 'usr_admin_01',
-  name: 'Hải Admin',
+  name: 'Hai Admin',
   email: 'hai@mintforge.io',
   role: 'ADMIN',
 };

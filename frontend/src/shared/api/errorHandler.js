@@ -1,5 +1,6 @@
 import { HTTP_STATUS } from '../constants/httpStatus';
 import { useToastStore } from '../store/toastStore';
+import i18n from '../i18n';
 
 /**
  * Parses and formats backend API errors into a standardized object
@@ -9,7 +10,7 @@ export const parseApiError = (error) => {
     return {
       status: 0,
       code: 'UNKNOWN_ERROR',
-      message: 'Đã có lỗi không xác định xảy ra.',
+      message: i18n.t('admin.error_unknown'),
     };
   }
 
@@ -19,18 +20,18 @@ export const parseApiError = (error) => {
       return {
         status: HTTP_STATUS.GATEWAY_TIMEOUT,
         code: 'TIMEOUT',
-        message: 'Yêu cầu hết thời gian chờ (Timeout). Vui lòng kiểm tra lại kết nối mạng.',
+        message: i18n.t('admin.error_timeout'),
       };
     }
     return {
       status: 0,
       code: 'NETWORK_ERROR',
-      message: 'Không thể kết nối đến máy chủ API. Vui lòng kiểm tra Backend đang chạy.',
+      message: i18n.t('admin.error_network'),
     };
   }
 
   const { status, data } = error.response;
-  let message = 'Yêu cầu không thành công.';
+  let message = i18n.t('admin.error_unsuccessful');
 
   if (typeof data === 'string') {
     message = data;
@@ -41,7 +42,7 @@ export const parseApiError = (error) => {
       message = data.detail;
     } else if (Array.isArray(data.detail)) {
       // FastAPI Validation error format: [{ loc: [...], msg: "..." }]
-      message = data.detail.map((err) => `${err.loc?.slice(-1)[0] || 'Trường'}: ${err.msg}`).join(', ');
+      message = data.detail.map((err) => `${err.loc?.slice(-1)[0] || i18n.t('admin.error_field')}: ${err.msg}`).join(', ');
     }
   }
 
@@ -56,9 +57,10 @@ export const parseApiError = (error) => {
 /**
  * Dispatches a toast notification for an API error
  */
-export const notifyApiError = (error, fallbackTitle = 'Lỗi API') => {
+export const notifyApiError = (error, fallbackTitle) => {
   const parsed = parseApiError(error);
-  useToastStore.getState().error(parsed.message, fallbackTitle);
+  const title = fallbackTitle || i18n.t('admin.error_title_api');
+  useToastStore.getState().error(parsed.message, title);
   return parsed;
 };
 

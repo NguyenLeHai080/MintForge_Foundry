@@ -1,3 +1,5 @@
+import i18n from '../../../shared/i18n';
+
 /**
  * Configuration and metadata for Upstream Providers
  */
@@ -8,10 +10,16 @@ export const PROVIDER_STATUSES = {
   INACTIVE: 'Inactive',
 };
 
+export const getProviderPriorities = () => [
+  { value: 'primary', label: i18n.t('admin.gateway_primary'), color: 'emerald' },
+  { value: 'secondary', label: i18n.t('admin.gateway_secondary'), color: 'indigo' },
+  { value: 'fallback', label: i18n.t('admin.gateway_fallback'), color: 'amber' },
+];
+
 export const PROVIDER_PRIORITIES = [
-  { value: 'primary', label: 'Cổng Chính (Primary Gateway)', color: 'emerald' },
-  { value: 'secondary', label: 'Cổng Phụ (Secondary Gateway)', color: 'indigo' },
-  { value: 'fallback', label: 'Cổng Dự Phòng (Fallback Gateway)', color: 'amber' },
+  { value: 'primary', labelKey: 'admin.gateway_primary', color: 'emerald' },
+  { value: 'secondary', labelKey: 'admin.gateway_secondary', color: 'indigo' },
+  { value: 'fallback', labelKey: 'admin.gateway_fallback', color: 'amber' },
 ];
 
 export const AVAILABLE_AI_MODELS = [

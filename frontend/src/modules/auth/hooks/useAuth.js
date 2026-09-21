@@ -1,6 +1,7 @@
 import { useAuthStore } from '../store/authStore';
 import { useToast } from '../../../shared/hooks/useToast';
 import { authApiService } from '../api/authApiService';
+import i18n from '../../../shared/i18n';
 
 /**
  * Custom hook wrapping Auth store and actions
@@ -14,25 +15,25 @@ export function useAuth() {
       const res = await authApiService.login(credentials);
       if (res && res.data) {
         login(res.data.user, res.data.access_token);
-        toast.success(`Chào mừng ${res.data.user.name || 'bạn'} trở lại!`, 'Đăng Nhập');
+        toast.success(i18n.t('admin.toast_login_success'), 'Auth');
         return { success: true, data: res.data };
       }
     } catch (err) {
       // Fallback for demo credentials
       if (credentials?.email === 'admin@mintforge.io' || credentials?.role === 'ADMIN') {
-        const mockAdmin = { id: 'usr_admin_01', name: 'Hải Admin', email: 'hai@mintforge.io', role: 'ADMIN' };
+        const mockAdmin = { id: 'usr_admin_01', name: 'Hai Admin', email: 'hai@mintforge.io', role: 'ADMIN' };
         login(mockAdmin, 'mock_token_admin');
-        toast.success('Đăng nhập quản trị viên thành công!', 'Đăng Nhập');
+        toast.success(i18n.t('admin.toast_login_success'), 'Auth');
         return { success: true, data: mockAdmin };
       }
-      toast.error(err.message || 'Đăng nhập không thành công', 'Lỗi Đăng Nhập');
+      toast.error(err.message || i18n.t('admin.toast_login_failed'), 'Auth');
       return { success: false, error: err };
     }
   };
 
   const handleLogout = () => {
     logout();
-    toast.info('Đã đăng xuất khỏi tài khoản.', 'Đăng Xuất');
+    toast.info(i18n.t('admin.toast_logout_success'), 'Auth');
   };
 
   return {

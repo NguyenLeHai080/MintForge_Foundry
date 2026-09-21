@@ -3,9 +3,9 @@ import { create } from 'zustand';
 export const useAuthStore = create((set) => ({
   user: {
     id: "usr_admin_01",
-    name: "Hải Admin",
+    name: "Hai Admin",
     email: "hai@mintforge.io",
-    role: "ADMIN" // "ADMIN" hoặc "USER"
+    role: "ADMIN" // 'ADMIN' or 'USER'
   },
   isAuthenticated: true,
   credits: 2450,
