@@ -29,9 +29,15 @@ export default function Navbar() {
 
         {/* Navigation Links */}
         <div className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
-          <Link to={`/${currentLang}`} className="hover:text-indigo-400 transition-colors">Trang Chủ</Link>
-          <a href="#pricing" className="hover:text-indigo-400 transition-colors">Bảng Giá</a>
-          <a href="#faq" className="hover:text-indigo-400 transition-colors">Hỏi Đáp</a>
+          <Link to={`/${currentLang}`} className="hover:text-indigo-400 transition-colors">
+            {t('landing.nav_home')}
+          </Link>
+          <a href="#pricing" className="hover:text-indigo-400 transition-colors">
+            {t('landing.nav_pricing')}
+          </a>
+          <a href="#faq" className="hover:text-indigo-400 transition-colors">
+            {t('landing.nav_faq')}
+          </a>
           {isAuthenticated && user?.role === 'ADMIN' && (
             <Link to={`/${currentLang}/admin/providers`} className="flex items-center gap-1.5 text-orange-400 hover:text-orange-300 transition-colors font-semibold">
               <FiShield className="w-4 h-4" />
@@ -55,7 +61,7 @@ export default function Navbar() {
               <button
                 onClick={logout}
                 className="p-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-rose-500/10 hover:border-rose-500/30 hover:text-rose-400 text-slate-400 transition-colors"
-                title="Đăng xuất"
+                title={t('landing.btn_logout')}
               >
                 <FiLogOut className="w-4 h-4" />
               </button>
@@ -66,7 +72,7 @@ export default function Navbar() {
               className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-orange-500 to-pink-500 text-white text-xs font-semibold hover:opacity-90 shadow-md shadow-orange-500/20 transition-all"
             >
               <FiLogIn className="w-3.5 h-3.5" />
-              <span>Đăng Nhập</span>
+              <span>{t('landing.btn_login')}</span>
             </button>
           )}
         </div>
