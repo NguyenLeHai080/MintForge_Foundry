@@ -166,12 +166,12 @@ git push origin --delete hotfix/fix_login_error
 
 ---
 
-## 🔗 Liên kết mẫu tham khảo thực tế
-Repository mẫu đã hoàn thành đầy đủ các bước trên:
-- **Repo:** [NguyenLeHai080/gitflow-hotfix-practice](https://github.com/NguyenLeHai080/gitflow-hotfix-practice)
-- **PR tính năng:** [PR #1](https://github.com/NguyenLeHai080/gitflow-hotfix-practice/pull/1)
-- **PR lên staging:** [PR #2](https://github.com/NguyenLeHai080/gitflow-hotfix-practice/pull/2)
-- **PR lên prod:** [PR #3](https://github.com/NguyenLeHai080/gitflow-hotfix-practice/pull/3)
-- **PR Hotfix prod:** [PR #5](https://github.com/NguyenLeHai080/gitflow-hotfix-practice/pull/5)
-- **PR đồng bộ ngược staging:** [PR #6](https://github.com/NguyenLeHai080/gitflow-hotfix-practice/pull/6)
-- **PR đồng bộ ngược dev:** [PR #7](https://github.com/NguyenLeHai080/gitflow-hotfix-practice/pull/7)
+## 🔗 Liên kết mẫu tham khảo thực tế trên Remote
+Repository chính thức của dự án:
+- **Repo:** [NguyenLeHai080/MintForge_Foundry](https://github.com/NguyenLeHai080/MintForge_Foundry)
+- **PR tính năng:** [PR #1](https://github.com/NguyenLeHai080/MintForge_Foundry/pull/1)
+- **PR lên staging:** [PR #2](https://github.com/NguyenLeHai080/MintForge_Foundry/pull/2)
+- **PR lên prod:** [PR #3](https://github.com/NguyenLeHai080/MintForge_Foundry/pull/3)
+- **PR Hotfix prod:** [PR #5](https://github.com/NguyenLeHai080/MintForge_Foundry/pull/5)
+- **PR đồng bộ ngược staging:** [PR #6](https://github.com/NguyenLeHai080/MintForge_Foundry/pull/6)
+- **PR đồng bộ ngược dev:** [PR #7](https://github.com/NguyenLeHai080/MintForge_Foundry/pull/7)
