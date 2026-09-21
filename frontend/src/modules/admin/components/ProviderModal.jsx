@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import BaseModal from '../../../shared/components/Modal/BaseModal';
 import { Input, Button } from '../../../shared/components/Form/FormControls';
 
 export default function ProviderModal({ isOpen, onClose, onSubmit, initialData = null }) {
+  const { t } = useTranslation();
   const isEdit = !!initialData;
   const [formData, setFormData] = useState({
     name: initialData?.name || '',
@@ -40,21 +42,21 @@ export default function ProviderModal({ isOpen, onClose, onSubmit, initialData =
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      title={isEdit ? "Chỉnh Sửa Nhà Cung Cấp" : "Thêm Nhà Cung Cấp AI Mới"}
+      title={isEdit ? t('admin.modal_edit_provider_title') : t('admin.modal_add_provider_title')}
       maxWidth="max-w-2xl"
     >
       <form onSubmit={handleSubmit} className="space-y-4 text-xs">
         <div className="grid grid-cols-2 gap-4">
           <Input
-            label="Tên Nhà Cung Cấp"
+            label={t('admin.form_provider_name')}
             name="name"
             value={formData.name}
             onChange={handleChange}
-            placeholder="VD: Nhà Cung cấp 02 (OpenAI Native)"
+            placeholder="VD: OpenAI Native"
             required
           />
           <Input
-            label="Mã Định Danh (Slug)"
+            label={t('admin.form_provider_slug')}
             name="slug"
             value={formData.slug}
             onChange={handleChange}
@@ -65,7 +67,7 @@ export default function ProviderModal({ isOpen, onClose, onSubmit, initialData =
 
         <div className="grid grid-cols-2 gap-4">
           <Input
-            label="Cổng Base URL"
+            label={t('admin.form_base_url')}
             name="baseUrl"
             value={formData.baseUrl}
             onChange={handleChange}
@@ -73,7 +75,7 @@ export default function ProviderModal({ isOpen, onClose, onSubmit, initialData =
             required
           />
           <Input
-            label="API Key (Bearer Token)"
+            label={t('admin.form_api_key')}
             name="apiKey"
             value={formData.apiKey}
             onChange={handleChange}
@@ -84,7 +86,7 @@ export default function ProviderModal({ isOpen, onClose, onSubmit, initialData =
 
         <div className="grid grid-cols-2 gap-4">
           <Input
-            label="Model Mặc Định"
+            label={t('admin.form_default_model')}
             name="defaultModel"
             value={formData.defaultModel}
             onChange={handleChange}
@@ -92,7 +94,7 @@ export default function ProviderModal({ isOpen, onClose, onSubmit, initialData =
             required
           />
           <Input
-            label="Giá Vốn / Ảnh Thành Công (VNĐ)"
+            label={t('admin.form_cost_per_image')}
             type="number"
             name="costPerImage"
             value={formData.costPerImage}
@@ -103,7 +105,7 @@ export default function ProviderModal({ isOpen, onClose, onSubmit, initialData =
         </div>
 
         <Input
-          label="Danh Sách Model Hỗ Trợ (phân cách bằng dấu phẩy)"
+          label={t('admin.form_supported_models')}
           name="supportedModels"
           value={formData.supportedModels}
           onChange={handleChange}
@@ -120,7 +122,7 @@ export default function ProviderModal({ isOpen, onClose, onSubmit, initialData =
               onChange={handleChange}
               className="rounded border-slate-700 bg-slate-950 text-orange-500 focus:ring-orange-500 w-4 h-4 cursor-pointer"
             />
-            <span className="font-semibold text-slate-200">Đặt làm Cổng Chính (Primary Gateway)</span>
+            <span className="font-semibold text-slate-200">{t('admin.form_set_primary')}</span>
           </label>
 
           <label className="flex items-center gap-2 cursor-pointer">
@@ -131,16 +133,16 @@ export default function ProviderModal({ isOpen, onClose, onSubmit, initialData =
               onChange={handleChange}
               className="rounded border-slate-700 bg-slate-950 text-emerald-500 focus:ring-emerald-500 w-4 h-4 cursor-pointer"
             />
-            <span className="font-semibold text-slate-200">Kích hoạt kết nối (Online)</span>
+            <span className="font-semibold text-slate-200">{t('admin.form_activate')}</span>
           </label>
         </div>
 
         <div className="flex justify-end gap-3 pt-4 border-t border-slate-800">
           <Button type="button" variant="ghost" onClick={onClose}>
-            Hủy Bỏ
+            {t('admin.btn_cancel')}
           </Button>
           <Button type="submit" variant="primary" className="!bg-gradient-to-r !from-orange-500 !to-amber-500">
-            {isEdit ? "Lưu Thay Đổi" : "Tạo Nhà Cung Cấp"}
+            {isEdit ? t('admin.btn_save_changes') : t('admin.btn_create_provider')}
           </Button>
         </div>
       </form>
