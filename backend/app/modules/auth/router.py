@@ -25,3 +25,7 @@ async def login(credentials: UserLogin, db: AsyncSession = Depends(get_db)):
 @router.get("/me", response_model=ApiResponse[UserResponse])
 async def get_me(current_user: User = Depends(get_current_user)):
     return ApiResponse(data=current_user)
+
+@router.post("/logout", response_model=ApiResponse[dict])
+async def logout():
+    return ApiResponse(message="Đăng xuất thành công", data={"logged_out": True})
