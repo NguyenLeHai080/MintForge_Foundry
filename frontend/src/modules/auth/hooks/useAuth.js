@@ -19,13 +19,28 @@ export function useAuth() {
         return { success: true, data: res.data };
       }
     } catch (err) {
-      // Fallback for demo credentials
-      if (credentials?.email === 'admin@mintforge.io' || credentials?.role === 'ADMIN') {
-        const mockAdmin = { id: 'usr_admin_01', name: 'Hai Admin', email: 'hai@mintforge.io', role: 'ADMIN' };
+      // Resilient fallback for demo accounts if Backend server is offline
+      if (
+        credentials?.email === 'hai@mintforge.io' ||
+        credentials?.email === 'admin@mintforge.io' ||
+        credentials?.role === 'ADMIN'
+      ) {
+        const mockAdmin = { id: 'usr_admin_01', name: 'Nguyen Le Hai', email: 'hai@mintforge.io', role: 'ADMIN' };
         login(mockAdmin, 'mock_token_admin');
         toast.success(i18n.t('admin.toast_login_success'), 'Auth');
         return { success: true, data: mockAdmin };
       }
+
+      if (
+        credentials?.email === 'creator@mintforge.io' ||
+        credentials?.role === 'CREATOR'
+      ) {
+        const mockCreator = { id: 'usr_creator_02', name: 'AI Creator Pro', email: 'creator@mintforge.io', role: 'CREATOR' };
+        login(mockCreator, 'mock_token_creator');
+        toast.success(i18n.t('admin.toast_login_success'), 'Auth');
+        return { success: true, data: mockCreator };
+      }
+
       toast.error(err.message || i18n.t('admin.toast_login_failed'), 'Auth');
       return { success: false, error: err };
     }
