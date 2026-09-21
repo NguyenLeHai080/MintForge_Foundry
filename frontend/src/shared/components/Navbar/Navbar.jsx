@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FiShield, FiLogIn, FiLogOut } from 'react-icons/fi';
 import { useAuthStore } from '../../../modules/auth/store/authStore';
+import { useAuthModalStore } from '../../../modules/auth/store/authModalStore';
 import LanguageSwitcher from './LanguageSwitcher';
 import UserProfileDropdown from '../../../modules/auth/components/UserProfileDropdown';
 
@@ -11,6 +12,7 @@ export default function Navbar() {
   const { lang } = useParams();
   const currentLang = lang || 'vi';
   const { user, isAuthenticated } = useAuthStore();
+  const { openModal } = useAuthModalStore();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
@@ -57,19 +59,21 @@ export default function Navbar() {
             <UserProfileDropdown variant="navbar" />
           ) : (
             <div className="flex items-center gap-2">
-              <Link
-                to={`/${currentLang}/login`}
-                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800 text-xs font-semibold transition-colors"
+              <button
+                type="button"
+                onClick={() => openModal('login')}
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800 text-xs font-semibold transition-colors cursor-pointer"
               >
                 <FiLogIn className="w-3.5 h-3.5" />
                 <span>{t('landing.btn_login')}</span>
-              </Link>
-              <Link
-                to={`/${currentLang}/register`}
-                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-orange-500 to-pink-500 text-white text-xs font-semibold hover:opacity-95 shadow-md shadow-orange-500/20 transition-all"
+              </button>
+              <button
+                type="button"
+                onClick={() => openModal('register')}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-orange-500 to-pink-500 text-white text-xs font-semibold hover:opacity-95 shadow-md shadow-orange-500/20 transition-all cursor-pointer"
               >
                 <span>{t('landing.btn_register')}</span>
-              </Link>
+              </button>
             </div>
           )}
         </div>
