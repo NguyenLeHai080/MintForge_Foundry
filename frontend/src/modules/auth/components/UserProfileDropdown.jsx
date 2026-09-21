@@ -46,9 +46,9 @@ export default function UserProfileDropdown({ variant = 'admin', className = '' 
 
   if (!isAuthenticated || !user) return null;
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setIsOpen(false);
-    logout();
+    await logout();
     navigate(`/${currentLang}`);
   };
 
