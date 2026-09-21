@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FiChevronDown, FiGlobe, FiCheck } from 'react-icons/fi';
 import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE } from '../../i18n';
+import { applyLanguageFont } from '../../utils/fontManager';
 
 export default function LanguageSwitcher({ className = "" }) {
   const { i18n } = useTranslation();
@@ -28,6 +29,7 @@ export default function LanguageSwitcher({ className = "" }) {
 
   const handleSelectLanguage = (newLangCode) => {
     setIsOpen(false);
+    applyLanguageFont(newLangCode);
     i18n.changeLanguage(newLangCode);
     localStorage.setItem('mf_lang', newLangCode);
 
