@@ -68,8 +68,8 @@ export default function Navbar() {
             </div>
           ) : (
             <button
-              onClick={() => login({ id: 'usr_admin_01', name: 'Hải Admin', email: 'hai@mintforge.io', role: 'ADMIN' })}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-orange-500 to-pink-500 text-white text-xs font-semibold hover:opacity-90 shadow-md shadow-orange-500/20 transition-all"
+              onClick={() => login({ id: 'usr_admin_01', name: 'Hai Admin', email: 'hai@mintforge.io', role: 'ADMIN' })}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-orange-500 to-pink-500 text-white text-xs font-semibold hover:opacity-95 shadow-md shadow-orange-500/20 transition-all"
             >
               <FiLogIn className="w-3.5 h-3.5" />
               <span>{t('landing.btn_login')}</span>

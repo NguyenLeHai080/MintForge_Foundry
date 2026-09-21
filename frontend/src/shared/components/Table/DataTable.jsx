@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FiSearch, FiChevronDown, FiChevronUp, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 /**
@@ -15,10 +16,12 @@ export default function DataTable({
   data = [],
   selectable = true,
   onSelectionChange,
-  searchPlaceholder = "Tìm kiếm dữ liệu...",
+  searchPlaceholder,
   actions,
   pageSize = 5
 }) {
+  const { t } = useTranslation();
+  const effectivePlaceholder = searchPlaceholder || t('admin.table_search_placeholder');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedIds, setSelectedIds] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
@@ -95,14 +98,14 @@ export default function DataTable({
               setSearchTerm(e.target.value);
               setCurrentPage(1);
             }}
-            placeholder={searchPlaceholder}
+            placeholder={effectivePlaceholder}
             className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
           />
         </div>
         <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
           {selectedIds.length > 0 && (
             <span className="text-xs bg-indigo-500/20 text-indigo-300 px-3 py-1.5 rounded-lg border border-indigo-500/30">
-              Đã chọn {selectedIds.length} mục
+              {t('admin.table_selected_items', { count: selectedIds.length })}
             </span>
           )}
           {actions}
@@ -170,7 +173,7 @@ export default function DataTable({
             ) : (
               <tr>
                 <td colSpan={columns.length + (selectable ? 1 : 0)} className="p-8 text-center text-slate-500">
-                  Không tìm thấy bản ghi nào phù hợp.
+                  {t('admin.table_no_records')}
                 </td>
               </tr>
             )}
@@ -181,7 +184,7 @@ export default function DataTable({
       {/* Pagination Footer */}
       <div className="p-4 bg-slate-900/60 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
         <div>
-          Hiển thị <strong>{paginatedData.length}</strong> / <strong>{sortedData.length}</strong> kết quả
+          {t('admin.table_showing')} <strong>{paginatedData.length}</strong> / <strong>{sortedData.length}</strong> {t('admin.table_records')}
         </div>
         <div className="flex items-center gap-2">
           <button
@@ -192,7 +195,7 @@ export default function DataTable({
             <FiChevronLeft className="w-4 h-4" />
           </button>
           <span className="px-3 py-1 font-semibold text-slate-200">
-            Trang {currentPage} / {totalPages}
+            {t('admin.table_page')} {currentPage} / {totalPages}
           </span>
           <button
             disabled={currentPage === totalPages}

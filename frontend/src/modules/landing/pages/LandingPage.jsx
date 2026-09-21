@@ -12,46 +12,46 @@ export default function LandingPage() {
   const plans = [
     {
       id: "plan_starter",
-      name: "Khởi Động (Starter)",
+      name: t('landing.plan_starter_name'),
       price: "199.000₫",
-      period: "/ tháng",
-      credits: "500 Credits",
+      period: t('landing.plan_starter_period'),
+      credits: t('landing.plan_starter_credits'),
       popular: false,
       features: [
-        "150 ảnh tiêu chuẩn Full HD",
-        "Mô hình SDXL & Stable Diffusion 1.5",
-        "Tốc độ hàng đợi tiêu chuẩn",
-        "Quyền truy cập thư viện Prompt cộng đồng"
+        t('landing.plan_starter_f1'),
+        t('landing.plan_starter_f2'),
+        t('landing.plan_starter_f3'),
+        t('landing.plan_starter_f4')
       ]
     },
     {
       id: "plan_pro",
-      name: "Chuyên Nghiệp (Pro Creator)",
+      name: t('landing.plan_pro_name'),
       price: "499.000₫",
-      period: "/ tháng",
-      credits: "2.000 Credits",
+      period: t('landing.plan_pro_period'),
+      credits: t('landing.plan_pro_credits'),
       popular: true,
       features: [
-        "Mở khóa Midjourney v6 & FLUX.1 Dev",
-        "Ảnh độ phân giải 4K Ultra-Res",
-        "Ưu tiên hàng đợi GPU tốc độ cao",
-        "Công cụ Inpainting & Upscaler 4x",
-        "Hỗ trợ kỹ thuật ưu tiên 24/7"
+        t('landing.plan_pro_f1'),
+        t('landing.plan_pro_f2'),
+        t('landing.plan_pro_f3'),
+        t('landing.plan_pro_f4'),
+        t('landing.plan_pro_f5')
       ]
     },
     {
       id: "plan_enterprise",
-      name: "Doanh Nghiệp (Enterprise)",
+      name: t('landing.plan_enterprise_name'),
       price: "1.990.000₫",
-      period: "/ tháng",
-      credits: "10.000 Credits",
+      period: t('landing.plan_enterprise_period'),
+      credits: t('landing.plan_enterprise_credits'),
       popular: false,
       features: [
-        "Không giới hạn số lượt gen ảnh",
-        "Kênh GPU dedicated riêng biệt",
-        "Tích hợp API Key cho website/app",
-        "Hỗ trợ huấn luyện Custom LoRA model",
-        "Hợp đồng & Xuất hóa đơn VAT đầy đủ"
+        t('landing.plan_enterprise_f1'),
+        t('landing.plan_enterprise_f2'),
+        t('landing.plan_enterprise_f3'),
+        t('landing.plan_enterprise_f4'),
+        t('landing.plan_enterprise_f5')
       ]
     }
   ];

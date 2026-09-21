@@ -3,8 +3,8 @@ import { create } from 'zustand';
 const initialProviders = [
   {
     id: "p_02",
-    name: "Nhà Cung cấp 02",
-    slug: "nhà_cung_cấp_02",
+    name: "Upstream Gateway 02",
+    slug: "upstream_gateway_02",
     baseUrl: "https://api.1eeh.dev/v1",
     apiKey: "sk-50Z82910488219482910",
     defaultModel: "gpt-image-2",
@@ -16,8 +16,8 @@ const initialProviders = [
   },
   {
     id: "p_01",
-    name: "Nhà Cung Cấp 01",
-    slug: "nhà_cung_cấp_01",
+    name: "Upstream Gateway 01",
+    slug: "upstream_gateway_01",
     baseUrl: "https://api.xompet.io.vn/v1",
     apiKey: "sk-9r88291048821948Lnzz",
     defaultModel: "gpt-image-2.5-flare",
