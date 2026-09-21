@@ -1,0 +1,19 @@
+{
+  "hero_badge": "🔥 NỀN TẢNG NẠP TÍN DỤNG AI HÀNG ĐẦU",
+  "hero_title": "Bảng Giá & Nạp Tín Dụng AI Siêu Tốc",
+  "hero_desc": "Hệ thống quản lý gói cước và nạp credits tự động cho MintForge. Trải nghiệm Midjourney v6, SDXL và FLUX không giới hạn tốc độ.",
+  "btn_explore": "Khám Phá Bảng Giá",
+  "btn_login": "Đăng Nhập",
+  "btn_register": "Đăng Ký",
+  "btn_admin": "Vào Quản Trị (Admin)",
+  "btn_logout": "Đăng Xuất",
+  "pricing_title": "Các Gói Cước Được Yêu Thích",
+  "pricing_subtitle": "Lựa chọn gói nạp phù hợp với nhu cầu sáng tạo của bạn",
+  "popular": "Phổ Biến Nhất",
+  "btn_choose_plan": "Chọn Gói Này",
+  "faq_title": "Câu Hỏi Thường Gặp",
+  "faq_q1": "Credit dùng để làm gì?",
+  "faq_a1": "Credit là đơn vị thanh toán GPU để sinh ảnh AI (SDXL = 2 credits, Midjourney = 5 credits, FLUX = 4 credits).",
+  "faq_q2": "Credit có hết hạn không?",
+  "faq_a2": "Gói nạp lẻ không bao giờ hết hạn. Gói thuê bao hàng tháng rollover tối đa 50% sang chu kỳ kế tiếp."
+}
