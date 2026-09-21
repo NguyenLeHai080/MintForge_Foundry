@@ -31,7 +31,12 @@ export function useAuth() {
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await authApiService.logout();
+    } catch (err) {
+      // Ignore if BE is offline or token already cleared
+    }
     logout();
     toast.info(i18n.t('admin.toast_logout_success'), 'Auth');
   };
