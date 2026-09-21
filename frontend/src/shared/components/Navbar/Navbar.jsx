@@ -4,12 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { FiShield, FiLogIn, FiLogOut } from 'react-icons/fi';
 import { useAuthStore } from '../../../modules/auth/store/authStore';
 import LanguageSwitcher from './LanguageSwitcher';
+import UserProfileDropdown from '../../../modules/auth/components/UserProfileDropdown';
 
 export default function Navbar() {
   const { t } = useTranslation();
   const { lang } = useParams();
   const currentLang = lang || 'vi';
-  const { user, isAuthenticated, logout, login } = useAuthStore();
+  const { user, isAuthenticated } = useAuthStore();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
@@ -53,27 +54,23 @@ export default function Navbar() {
 
           {/* Auth Action */}
           {isAuthenticated ? (
-            <div className="flex items-center gap-2">
-              <div className="hidden sm:flex flex-col text-right">
-                <span className="text-xs font-semibold text-slate-200">{user?.name}</span>
-                <span className="text-[10px] text-orange-400 uppercase font-bold">{user?.role}</span>
-              </div>
-              <button
-                onClick={logout}
-                className="p-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-rose-500/10 hover:border-rose-500/30 hover:text-rose-400 text-slate-400 transition-colors"
-                title={t('landing.btn_logout')}
-              >
-                <FiLogOut className="w-4 h-4" />
-              </button>
-            </div>
+            <UserProfileDropdown variant="navbar" />
           ) : (
-            <button
-              onClick={() => login({ id: 'usr_admin_01', name: 'Hai Admin', email: 'hai@mintforge.io', role: 'ADMIN' })}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-orange-500 to-pink-500 text-white text-xs font-semibold hover:opacity-95 shadow-md shadow-orange-500/20 transition-all"
-            >
-              <FiLogIn className="w-3.5 h-3.5" />
-              <span>{t('landing.btn_login')}</span>
-            </button>
+            <div className="flex items-center gap-2">
+              <Link
+                to={`/${currentLang}/login`}
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800 text-xs font-semibold transition-colors"
+              >
+                <FiLogIn className="w-3.5 h-3.5" />
+                <span>{t('landing.btn_login')}</span>
+              </Link>
+              <Link
+                to={`/${currentLang}/register`}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-orange-500 to-pink-500 text-white text-xs font-semibold hover:opacity-95 shadow-md shadow-orange-500/20 transition-all"
+              >
+                <span>{t('landing.btn_register')}</span>
+              </Link>
+            </div>
           )}
         </div>
       </div>
