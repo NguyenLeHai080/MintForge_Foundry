@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, useNavigate, Outlet, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE } from '../../i18n';
+import { applyLanguageFont } from '../../utils/fontManager';
 
 export default function LanguageRouteWrapper() {
   const { lang } = useParams();
@@ -13,6 +14,7 @@ export default function LanguageRouteWrapper() {
     const matchedLang = SUPPORTED_LANGUAGES.find(l => l.code === lang || (l.aliases && l.aliases.includes(lang)));
     if (!matchedLang) {
       const savedLang = localStorage.getItem('mf_lang') || DEFAULT_LANGUAGE;
+      applyLanguageFont(savedLang);
       const segments = location.pathname.split('/').filter(Boolean);
       segments[0] = savedLang;
       const newPath = '/' + segments.join('/');
@@ -26,6 +28,10 @@ export default function LanguageRouteWrapper() {
         navigate(newPath + location.search + location.hash, { replace: true });
         return;
       }
+
+      // Apply typography specifically for the matched language
+      applyLanguageFont(matchedLang.code);
+
       if (i18n.language !== lang) {
         i18n.changeLanguage(lang);
         localStorage.setItem('mf_lang', lang);
