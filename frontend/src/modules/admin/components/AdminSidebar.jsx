@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { 
   FiGrid, FiSliders, FiActivity, FiUsers, FiKey, FiBookOpen, 
   FiShield, FiDollarSign, FiDownload, FiCreditCard, FiServer, 
@@ -8,6 +8,8 @@ import {
 
 export default function AdminSidebar() {
   const location = useLocation();
+  const { lang } = useParams();
+  const currentLang = lang || 'vi';
 
   const menuSections = [
     {
@@ -101,12 +103,13 @@ export default function AdminSidebar() {
               </div>
               <ul className="space-y-0.5 mt-0.5">
                 {sec.items.map((item, itemIdx) => {
-                  const isCurrent = item.isActive || location.pathname === item.path;
+                  const targetPath = `/${currentLang}${item.path}`;
+                  const isCurrent = item.isActive || location.pathname === targetPath;
                   const Icon = item.icon;
                   return (
                     <li key={itemIdx}>
                       <Link
-                        to={item.path}
+                        to={targetPath}
                         className={`flex items-center justify-between px-3 py-2 rounded-xl transition-all ${
                           isCurrent
                             ? 'bg-gradient-to-r from-orange-500/15 to-transparent text-white font-semibold border-l-4 border-orange-500 shadow-sm'

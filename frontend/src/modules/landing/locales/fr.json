@@ -1,0 +1,19 @@
+{
+  "hero_badge": "🔥 LA MEILLEURE PLATEFORME DE CRÉDITS IA",
+  "hero_title": "Crédits d'Images IA & Moteur de Facturation",
+  "hero_desc": "Moteur de facturation et gestion de crédits automatisé pour MintForge. Profitez de Midjourney v6, SDXL et FLUX avec une vitesse GPU dédiée.",
+  "btn_explore": "Découvrir les Tarifs",
+  "btn_login": "Se Connecter",
+  "btn_register": "S'inscrire",
+  "btn_admin": "Portail Super Admin",
+  "btn_logout": "Déconnexion",
+  "pricing_title": "Nos Forfaits Populaires",
+  "pricing_subtitle": "Choisissez le pack de crédits idéal pour votre flux créatif",
+  "popular": "Le Plus Populaire",
+  "btn_choose_plan": "Choisir ce Forfait",
+  "faq_title": "Foire Aux Questions",
+  "faq_q1": "À quoi servent les crédits ?",
+  "faq_a1": "Les crédits servent d'unités de calcul GPU pour générer des images IA (SDXL = 2 crédits, Midjourney = 5 crédits, FLUX = 4 crédits).",
+  "faq_q2": "Les crédits ont-ils une date d'expiration ?",
+  "faq_a2": "Les recharges uniques n'expirent jamais. Les abonnements mensuels permettent de reporter jusqu'à 50% des crédits non utilisés."
+}
