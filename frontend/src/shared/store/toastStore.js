@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import i18n from '../i18n';
 
 export const useToastStore = create((set, get) => ({
   toasts: [],
@@ -26,20 +27,20 @@ export const useToastStore = create((set, get) => ({
     }));
   },
 
-  success: (message, title = 'Thành công') => {
-    return get().addToast({ type: 'success', title, message });
+  success: (message, title) => {
+    return get().addToast({ type: 'success', title: title || i18n.t('admin.toast_title_success'), message });
   },
 
-  error: (message, title = 'Lỗi hệ thống') => {
-    return get().addToast({ type: 'error', title, message, duration: 6000 });
+  error: (message, title) => {
+    return get().addToast({ type: 'error', title: title || i18n.t('admin.toast_title_error'), message, duration: 6000 });
   },
 
-  warning: (message, title = 'Cảnh báo') => {
-    return get().addToast({ type: 'warning', title, message });
+  warning: (message, title) => {
+    return get().addToast({ type: 'warning', title: title || i18n.t('admin.toast_title_warning'), message });
   },
 
-  info: (message, title = 'Thông báo') => {
-    return get().addToast({ type: 'info', title, message });
+  info: (message, title) => {
+    return get().addToast({ type: 'info', title: title || i18n.t('admin.toast_title_info'), message });
   },
 }));
 

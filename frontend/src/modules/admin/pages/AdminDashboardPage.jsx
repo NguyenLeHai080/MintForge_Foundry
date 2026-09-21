@@ -33,7 +33,7 @@ export default function AdminDashboardPage() {
   };
 
   const handleBatchDelete = () => {
-    if (window.confirm(`Bạn có chắc chắn muốn xóa ${selectedIds.length} gói cước đã chọn?`)) {
+    if (window.confirm(t('admin.plans_confirm_batch_delete', { count: selectedIds.length }))) {
       deleteBatchPlans(selectedIds);
       setSelectedIds([]);
     }
@@ -42,7 +42,7 @@ export default function AdminDashboardPage() {
   const columns = [
     {
       key: 'name',
-      label: 'Tên Gói Cước',
+      label: t('admin.plans_col_name'),
       sortable: true,
       render: (val, row) => (
         <div>
@@ -53,7 +53,7 @@ export default function AdminDashboardPage() {
     },
     {
       key: 'price',
-      label: 'Giá Niêm Yết',
+      label: t('admin.plans_col_price'),
       sortable: true,
       render: (val) => (
         <span className="font-semibold text-emerald-400">
@@ -63,7 +63,7 @@ export default function AdminDashboardPage() {
     },
     {
       key: 'credits',
-      label: 'Hạn Mức Credits',
+      label: t('admin.plans_col_credits'),
       sortable: true,
       render: (val) => (
         <span className="inline-flex items-center gap-1 font-bold text-indigo-400">
@@ -73,7 +73,7 @@ export default function AdminDashboardPage() {
     },
     {
       key: 'status',
-      label: 'Trạng Thái',
+      label: t('admin.plans_col_status'),
       sortable: true,
       render: (val) => (
         <Badge variant={val === 'ACTIVE' ? 'success' : 'danger'}>
@@ -83,24 +83,24 @@ export default function AdminDashboardPage() {
     },
     {
       key: 'actions',
-      label: 'Thao Tác',
+      label: t('admin.plans_col_actions'),
       render: (_, row) => (
         <div className="flex items-center gap-2">
           <button
             onClick={() => handleOpenEdit(row)}
             className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-indigo-400 hover:text-indigo-300 transition-colors"
-            title="Chỉnh sửa"
+            title={t('admin.action_edit')}
           >
             <FiEdit2 className="w-3.5 h-3.5" />
           </button>
           <button
             onClick={() => {
-              if (window.confirm(`Xóa gói cước "${row.name}"?`)) {
+              if (window.confirm(t('admin.plans_confirm_delete', { name: row.name }))) {
                 deletePlan(row.id);
               }
             }}
             className="p-1.5 rounded-lg bg-slate-800 hover:bg-rose-500/20 text-rose-400 hover:text-rose-300 transition-colors"
-            title="Xóa"
+            title={t('admin.action_delete')}
           >
             <FiTrash2 className="w-3.5 h-3.5" />
           </button>
@@ -118,10 +118,10 @@ export default function AdminDashboardPage() {
             <span className="p-2 rounded-xl bg-gradient-to-tr from-indigo-500 to-pink-500 text-white shadow-lg shadow-indigo-500/30">
               <FiLayers className="w-6 h-6" />
             </span>
-            {t('admin.admin_title')}
+            {t('admin.plans_title')}
           </h1>
           <p className="text-slate-400 text-sm mt-1">
-            Quản trị bảng giá, cấu hình credit quota và điều phối thanh toán hệ sinh thái.
+            {t('admin.plans_subtitle')}
           </p>
         </div>
 
@@ -129,12 +129,12 @@ export default function AdminDashboardPage() {
           {selectedIds.length > 0 && (
             <Button variant="danger" size="sm" onClick={handleBatchDelete}>
               <FiTrash2 className="w-4 h-4" />
-              <span>Xóa ({selectedIds.length})</span>
+              <span>{t('admin.plans_btn_batch_delete', { count: selectedIds.length })}</span>
             </Button>
           )}
           <Button variant="primary" onClick={handleOpenCreate}>
             <FiPlus className="w-4 h-4" />
-            <span>Thêm Gói Cước Mới</span>
+            <span>{t('admin.plans_btn_create')}</span>
           </Button>
         </div>
       </div>
@@ -146,8 +146,8 @@ export default function AdminDashboardPage() {
             <FiLayers className="w-6 h-6" />
           </div>
           <div>
-            <div className="text-xs text-slate-400 font-medium">Tổng Gói Cước Đang Mở</div>
-            <div className="text-2xl font-bold text-white">{plans.length} Gói</div>
+            <div className="text-xs text-slate-400 font-medium">{t('admin.plans_stat_active_plans')}</div>
+            <div className="text-2xl font-bold text-white">{plans.length} {t('admin.plans_stat_unit_plans')}</div>
           </div>
         </div>
 
@@ -156,7 +156,7 @@ export default function AdminDashboardPage() {
             <FiDollarSign className="w-6 h-6" />
           </div>
           <div>
-            <div className="text-xs text-slate-400 font-medium">Doanh Thu Tháng Này</div>
+            <div className="text-xs text-slate-400 font-medium">{t('admin.plans_stat_monthly_revenue')}</div>
             <div className="text-2xl font-bold text-emerald-400">128.450.000₫</div>
           </div>
         </div>
@@ -166,8 +166,8 @@ export default function AdminDashboardPage() {
             <FiUsers className="w-6 h-6" />
           </div>
           <div>
-            <div className="text-xs text-slate-400 font-medium">Người Dùng Hoạt Động</div>
-            <div className="text-2xl font-bold text-pink-400">1,482 Creators</div>
+            <div className="text-xs text-slate-400 font-medium">{t('admin.plans_stat_active_creators')}</div>
+            <div className="text-2xl font-bold text-pink-400">1,482 {t('admin.plans_stat_creators_unit')}</div>
           </div>
         </div>
       </div>
@@ -178,7 +178,7 @@ export default function AdminDashboardPage() {
         data={plans}
         selectable={true}
         onSelectionChange={setSelectedIds}
-        searchPlaceholder="Tìm theo tên gói, giá hoặc trạng thái..."
+        searchPlaceholder={t('admin.plans_search_placeholder')}
       />
 
       {/* Modal Create / Edit */}

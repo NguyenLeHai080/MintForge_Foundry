@@ -8,7 +8,20 @@ import AdminDashboardPage from './modules/admin/pages/AdminDashboardPage';
 import { useAuthStore } from './modules/auth/store/authStore';
 import LanguageRouteWrapper from './shared/components/Navbar/LanguageRouteWrapper';
 import { DEFAULT_LANGUAGE } from './shared/i18n';
+import { useTranslation } from 'react-i18next';
 import ToastContainer from './shared/components/Toast/ToastContainer';
+
+// Public Footer with localized copyright and architecture statement
+function PublicFooter() {
+  const { t } = useTranslation();
+  return (
+    <footer className="border-t border-slate-800/80 bg-slate-950/80 py-8 text-center text-xs text-slate-500">
+      <div className="max-w-7xl mx-auto px-4">
+        {t('landing.footer_engine')}
+      </div>
+    </footer>
+  );
+}
 
 // Protected Route Guard for Super Admin with dynamic lang support
 function AdminRoute({ children }) {
@@ -51,11 +64,7 @@ export default function App() {
                 <main className="flex-1">
                   <LandingPage />
                 </main>
-                <footer className="border-t border-slate-800/80 bg-slate-950/80 py-8 text-center text-xs text-slate-500">
-                  <div className="max-w-7xl mx-auto px-4">
-                    MintForge Foundry Engine &copy; 2026. Thiết kế theo chuẩn Enterprise Modular Clean Architecture.
-                  </div>
-                </footer>
+                <PublicFooter />
               </div>
             }
           />

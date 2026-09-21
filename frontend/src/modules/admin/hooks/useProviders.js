@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useProvidersStore } from '../store/providersStore';
 import { providerApiService } from '../api/providerApiService';
 import { useToast } from '../../../shared/hooks/useToast';
+import i18n from '../../../shared/i18n';
 
 /**
  * Custom hook to manage Providers state and API synchronization
@@ -51,12 +52,12 @@ export function useProviders() {
       const res = await providerApiService.ping(id);
       const latency = res?.data?.latency_ms ?? (Math.floor(Math.random() * 150) + 120);
       store.updatePing(id, latency);
-      toast.success(`Kết nối thành công: ${latency} ms`, 'Ping Provider');
+      toast.success(i18n.t('admin.toast_ping_success', { latency }), 'Ping Provider');
       return latency;
     } catch (err) {
       const fallbackLatency = Math.floor(Math.random() * 200) + 150;
       store.updatePing(id, fallbackLatency);
-      toast.info(`Ping giả lập: ${fallbackLatency} ms`, 'Ping Provider');
+      toast.info(i18n.t('admin.toast_ping_simulated', { latency: fallbackLatency }), 'Ping Provider');
       return fallbackLatency;
     }
   };
