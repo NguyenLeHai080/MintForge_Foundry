@@ -8,6 +8,7 @@ import AdminDashboardPage from './modules/admin/pages/AdminDashboardPage';
 import { useAuthStore } from './modules/auth/store/authStore';
 import LanguageRouteWrapper from './shared/components/Navbar/LanguageRouteWrapper';
 import { DEFAULT_LANGUAGE } from './shared/i18n';
+import ToastContainer from './shared/components/Toast/ToastContainer';
 
 // Protected Route Guard for Super Admin with dynamic lang support
 function AdminRoute({ children }) {
@@ -32,6 +33,9 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      {/* Global Toast Notification System */}
+      <ToastContainer />
+
       <Routes>
         {/* 1. Redirect root to preferred language */}
         <Route path="/" element={<RootRedirect />} />
