@@ -1,0 +1,18 @@
+{
+  "admin_title": "Bảng Điều Khiển Quản Trị Foundry",
+  "tab_plans": "Quản Lý Gói Cước",
+  "tab_transactions": "Lịch Sử Giao Dịch",
+  "tab_users": "Quản Lý Người Dùng",
+  "btn_create_plan": "Thêm Gói Cước Mới",
+  "btn_edit": "Sửa",
+  "btn_delete": "Xóa",
+  "btn_batch_delete": "Xóa Các Mục Đã Chọn",
+  "modal_create_title": "Tạo Gói Cước Mới",
+  "modal_edit_title": "Chỉnh Sửa Gói Cước",
+  "modal_delete_confirm": "Bạn có chắc chắn muốn xóa mục này?",
+  "field_name": "Tên Gói",
+  "field_price": "Giá (VNĐ)",
+  "field_credits": "Hạn Mức Credits",
+  "field_status": "Trạng Thái",
+  "field_actions": "Thao Tác"
+}

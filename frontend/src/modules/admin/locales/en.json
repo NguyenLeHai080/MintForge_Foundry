@@ -1,0 +1,18 @@
+{
+  "admin_title": "Foundry Admin Dashboard",
+  "tab_plans": "Plan Management",
+  "tab_transactions": "Transaction Logs",
+  "tab_users": "User Directory",
+  "btn_create_plan": "Add New Plan",
+  "btn_edit": "Edit",
+  "btn_delete": "Delete",
+  "btn_batch_delete": "Delete Selected",
+  "modal_create_title": "Create New Tier",
+  "modal_edit_title": "Edit Plan Details",
+  "modal_delete_confirm": "Are you sure you want to delete this item?",
+  "field_name": "Plan Name",
+  "field_price": "Price (VND)",
+  "field_credits": "Credit Quota",
+  "field_status": "Status",
+  "field_actions": "Actions"
+}
