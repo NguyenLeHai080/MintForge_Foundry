@@ -5,9 +5,9 @@ import LandingPage from './modules/landing/pages/LandingPage';
 import AdminLayout from './modules/admin/layouts/AdminLayout';
 import UpstreamProvidersPage from './modules/admin/pages/UpstreamProvidersPage';
 import AdminDashboardPage from './modules/admin/pages/AdminDashboardPage';
-import LoginPage from './modules/auth/pages/LoginPage';
-import RegisterPage from './modules/auth/pages/RegisterPage';
+import AuthModal from './modules/auth/components/AuthModal';
 import { useAuthStore } from './modules/auth/store/authStore';
+import { useAuthModalStore } from './modules/auth/store/authModalStore';
 import LanguageRouteWrapper from './shared/components/Navbar/LanguageRouteWrapper';
 import { DEFAULT_LANGUAGE } from './shared/i18n';
 import { useTranslation } from 'react-i18next';
@@ -23,6 +23,19 @@ function PublicFooter() {
       </div>
     </footer>
   );
+}
+
+// Redirects auth route directly into modal on top of public page
+function AuthModalTriggerRoute({ mode }) {
+  const { lang } = useParams();
+  const currentLang = lang || localStorage.getItem('mf_lang') || DEFAULT_LANGUAGE;
+  const { openModal } = useAuthModalStore();
+
+  React.useEffect(() => {
+    openModal(mode);
+  }, [mode, openModal]);
+
+  return <Navigate to={`/${currentLang}`} replace />;
 }
 
 // Protected Route Guard for Super Admin with dynamic lang support
@@ -51,6 +64,9 @@ export default function App() {
       {/* Global Toast Notification System */}
       <ToastContainer />
 
+      {/* Global Unified Auth Modal (Login / Register) */}
+      <AuthModal />
+
       <Routes>
         {/* 1. Redirect root to preferred language */}
         <Route path="/" element={<RootRedirect />} />
@@ -71,9 +87,9 @@ export default function App() {
             }
           />
 
-          {/* Authentication Pages */}
-          <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegisterPage />} />
+          {/* Authentication triggered as Modal */}
+          <Route path="login" element={<AuthModalTriggerRoute mode="login" />} />
+          <Route path="register" element={<AuthModalTriggerRoute mode="register" />} />
 
           {/* Super Admin Routes */}
           <Route
