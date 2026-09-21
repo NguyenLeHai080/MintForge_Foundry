@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { 
   FiSearch, FiGlobe, FiChevronDown, FiPlus, FiBookOpen, 
   FiBell, FiActivity, FiUser 
@@ -7,6 +8,8 @@ import {
 import LanguageSwitcher from '../../../shared/components/Navbar/LanguageSwitcher';
 
 export default function AdminHeader() {
+  const { t } = useTranslation();
+
   return (
     <header className="h-16 bg-[#0c101d] border-b border-slate-800/80 px-6 flex items-center justify-between sticky top-0 z-30">
       {/* Left Search */}
@@ -15,7 +18,7 @@ export default function AdminHeader() {
           <FiSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
           <input
             type="text"
-            placeholder="Tìm kiếm nhanh..."
+            placeholder={t('admin.header_search_placeholder')}
             className="w-full bg-slate-900/80 border border-slate-800/80 rounded-xl pl-10 pr-4 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-orange-500/50 transition-colors"
           />
         </div>
@@ -29,7 +32,7 @@ export default function AdminHeader() {
         {/* Create New Dropdown */}
         <button className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold shadow-md shadow-orange-500/20 transition-all">
           <FiPlus className="w-4 h-4" />
-          <span>Tạo mới</span>
+          <span>{t('admin.header_create_new')}</span>
           <FiChevronDown className="w-3 h-3" />
         </button>
 
@@ -37,7 +40,7 @@ export default function AdminHeader() {
         <a 
           href="/docs" 
           className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 transition-colors"
-          title="Tài liệu API Docs"
+          title={t('admin.header_docs_title')}
         >
           <FiBookOpen className="w-4 h-4" />
         </a>
@@ -48,7 +51,7 @@ export default function AdminHeader() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
-          <span>API: Online</span>
+          <span>{t('admin.header_api_online')}</span>
         </div>
 
         {/* Notification Bell */}

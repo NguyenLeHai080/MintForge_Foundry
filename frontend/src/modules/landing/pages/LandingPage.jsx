@@ -95,27 +95,27 @@ export default function LandingPage() {
           <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4">
             <FiCpu className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-slate-100 mb-2">GPU Siêu Tốc Độc Quyền</h3>
+          <h3 className="text-lg font-bold text-slate-100 mb-2">{t('landing.feature_gpu_title')}</h3>
           <p className="text-sm text-slate-400 leading-relaxed">
-            Hạ tầng GPU Nvidia H100/A100 tối ưu hóa cho Midjourney v6 và FLUX.1 chỉ mất 3-5 giây cho mỗi tác vụ.
+            {t('landing.feature_gpu_desc')}
           </p>
         </div>
         <div className="glass-panel p-6 rounded-2xl border border-slate-800">
           <div className="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 mb-4">
             <FiShield className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-slate-100 mb-2">Thanh Toán An Toàn & Tức Thời</h3>
+          <h3 className="text-lg font-bold text-slate-100 mb-2">{t('landing.feature_payment_title')}</h3>
           <p className="text-sm text-slate-400 leading-relaxed">
-            Hỗ trợ quét mã VietQR tự động khớp đơn trong 2 giây, cùng thẻ thanh toán quốc tế chuẩn bảo mật PCI-DSS.
+            {t('landing.feature_payment_desc')}
           </p>
         </div>
         <div className="glass-panel p-6 rounded-2xl border border-slate-800">
           <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-4">
             <FiClock className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-slate-100 mb-2">Hoàn Credit 100% Khi Lỗi</h3>
+          <h3 className="text-lg font-bold text-slate-100 mb-2">{t('landing.feature_refund_title')}</h3>
           <p className="text-sm text-slate-400 leading-relaxed">
-            Cơ chế bảo vệ thông minh: Nếu tác vụ sinh ảnh lỗi hoặc bị chặn bởi bộ lọc an toàn, credit được hoàn lại ngay.
+            {t('landing.feature_refund_desc')}
           </p>
         </div>
       </section>
@@ -183,31 +183,33 @@ export default function LandingPage() {
       <BaseModal
         isOpen={!!selectedPlan}
         onClose={() => setSelectedPlan(null)}
-        title={`Xác Nhận Nạp Gói: ${selectedPlan?.name}`}
+        title={`${t('landing.modal_checkout_title')}: ${selectedPlan?.name}`}
       >
         {checkoutSuccess ? (
           <div className="text-center py-6">
             <div className="w-14 h-14 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-3">
               <FiCheck className="w-8 h-8" />
             </div>
-            <h4 className="text-lg font-bold text-white mb-1">Giao Dịch Thành Công!</h4>
-            <p className="text-xs text-slate-400">Đã cộng {selectedPlan?.credits} vào ví tài khoản của bạn.</p>
+            <h4 className="text-lg font-bold text-white mb-1">{t('landing.modal_checkout_success')}</h4>
+            <p className="text-xs text-slate-400">
+              {t('landing.modal_checkout_success_desc')} ({selectedPlan?.credits})
+            </p>
           </div>
         ) : (
           <div className="space-y-4">
             <div className="bg-slate-900/80 p-4 rounded-xl border border-slate-800 flex justify-between items-center text-sm">
-              <span className="text-slate-400">Số tiền thanh toán:</span>
+              <span className="text-slate-400">{t('landing.modal_payment_amount')}</span>
               <span className="text-lg font-bold text-white">{selectedPlan?.price}</span>
             </div>
             <div className="bg-slate-900/80 p-4 rounded-xl border border-slate-800 flex justify-between items-center text-sm">
-              <span className="text-slate-400">Tín dụng nhận được:</span>
+              <span className="text-slate-400">{t('landing.modal_credits_received')}</span>
               <span className="font-bold text-indigo-400">{selectedPlan?.credits}</span>
             </div>
             <div className="text-xs text-slate-500 text-center">
-              Quét mã VietQR hoặc sử dụng thẻ thanh toán để hoàn tất giao dịch.
+              {t('landing.modal_checkout_note')}
             </div>
             <Button variant="primary" onClick={handleCheckout} className="w-full">
-              Thanh Toán Ngay ({selectedPlan?.price})
+              {t('landing.btn_checkout_now')} ({selectedPlan?.price})
             </Button>
           </div>
         )}
