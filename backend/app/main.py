@@ -16,6 +16,39 @@ async def lifespan(app: FastAPI):
     # Khởi tạo database tables khi khởi động
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+
+    # Tự động seed tài khoản quản trị & người dùng mẫu nếu chưa có
+    from app.db.session import AsyncSessionLocal
+    from app.modules.auth.models import User
+    from app.core.security import get_password_hash
+    from sqlalchemy.future import select
+
+    async with AsyncSessionLocal() as session:
+        try:
+            admin_res = await session.execute(select(User).where(User.email == "hai@mintforge.io"))
+            if not admin_res.scalars().first():
+                session.add(User(
+                    email="hai@mintforge.io",
+                    name="Nguyen Le Hai",
+                    hashed_password=get_password_hash("admin123"),
+                    role="ADMIN",
+                    is_active=True
+                ))
+
+            creator_res = await session.execute(select(User).where(User.email == "creator@mintforge.io"))
+            if not creator_res.scalars().first():
+                session.add(User(
+                    email="creator@mintforge.io",
+                    name="AI Creator Pro",
+                    hashed_password=get_password_hash("creator123"),
+                    role="CREATOR",
+                    is_active=True
+                ))
+            await session.commit()
+        except Exception as e:
+            await session.rollback()
+            print(f"[Seed] Info: {e}")
+
     yield
 
 app = FastAPI(
