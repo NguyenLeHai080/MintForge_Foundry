@@ -10,16 +10,26 @@ export default function LanguageRouteWrapper() {
   const location = useLocation();
 
   useEffect(() => {
-    const isSupported = SUPPORTED_LANGUAGES.some(l => l.code === lang);
-    if (!isSupported) {
+    const matchedLang = SUPPORTED_LANGUAGES.find(l => l.code === lang || (l.aliases && l.aliases.includes(lang)));
+    if (!matchedLang) {
       const savedLang = localStorage.getItem('mf_lang') || DEFAULT_LANGUAGE;
       const segments = location.pathname.split('/').filter(Boolean);
       segments[0] = savedLang;
       const newPath = '/' + segments.join('/');
       navigate(newPath + location.search + location.hash, { replace: true });
-    } else if (i18n.language !== lang) {
-      i18n.changeLanguage(lang);
-      localStorage.setItem('mf_lang', lang);
+    } else {
+      // Chuyển hướng alias (ví dụ /vi -> /vn) về mã chuẩn nếu cần
+      if (matchedLang.code !== lang && matchedLang.aliases?.includes(lang)) {
+        const segments = location.pathname.split('/').filter(Boolean);
+        segments[0] = matchedLang.code;
+        const newPath = '/' + segments.join('/');
+        navigate(newPath + location.search + location.hash, { replace: true });
+        return;
+      }
+      if (i18n.language !== lang) {
+        i18n.changeLanguage(lang);
+        localStorage.setItem('mf_lang', lang);
+      }
     }
   }, [lang, i18n, navigate, location.pathname, location.search, location.hash]);
 
